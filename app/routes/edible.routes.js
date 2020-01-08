@@ -11,7 +11,7 @@ module.exports = function(app) {
   app.get("/api/edibles/:id", edibles.show);
 
   // Edible update
-  app.put("/api/edibles/:id", edibles.update);
+  app.patch("/api/edibles/:id", edibles.update);
 
   // Edible destroy
   app.delete("/api/edibles/:id", edibles.destroy);
