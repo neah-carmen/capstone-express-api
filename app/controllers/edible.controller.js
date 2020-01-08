@@ -3,7 +3,7 @@ const Edible = db.edibles;
 
 // Edible index
 exports.index = (req, res) => {
-  Edible.index()
+  Edible.findAll()
     .then(edibles => {
       // Send All Edibles to client
       res.json(
@@ -40,7 +40,7 @@ exports.create = (req, res) => {
 
 // Edible show
 exports.show = (req, res) => {
-  Edible.show(req.params.id)
+  Edible.findByPk(req.params.id)
     .then(edible => {
       res.json(edible);
     })
