@@ -1,37 +1,5 @@
-var edibles = {
-  edible1: {
-    id: 1,
-    name: "Top Ramen Soy Flavor",
-    upc: "038678561125",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  },
-  edible2: {
-    id: 2,
-    name: "Sour Patch Kids",
-    upc: "038678561126",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  },
-  edible3: {
-    id: 3,
-    name: "Sour Punch Straws",
-    upc: "038678561127",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  },
-  edible4: {
-    id: 4,
-    name: "Trolli Gummi Worms",
-    upc: "038678561128",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  }
-};
+const db = require("../config/db.config.js");
+const Edible = db.edibles;
 
 exports.index = function(req, res) {
   console.log("--->Index: \n" + JSON.stringify(edibles, null, 4));
