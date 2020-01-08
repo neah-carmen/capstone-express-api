@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  var edibles = require("../controllers/edible.controller.js");
+  const edibles = require("../controllers/edible.controller.js");
 
   // Edible index
   app.get("/api/edibles", edibles.index);

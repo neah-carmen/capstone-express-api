@@ -20,6 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Models/tables
-db.edibles = require("../model/edible.model.js")(sequelize, Sequelize);
+db.edibles = require("../models/edible.model.js")(sequelize, Sequelize);
 
 module.exports = db;
