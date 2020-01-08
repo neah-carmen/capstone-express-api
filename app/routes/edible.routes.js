@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  var edibles = require("../controllers/edible.controller.js");
+  const edibles = require("../controllers/edible.controller.js");
 
   // Edible index
   app.get("/api/edibles", edibles.index);
@@ -11,7 +11,7 @@ module.exports = function(app) {
   app.get("/api/edibles/:id", edibles.show);
 
   // Edible update
-  app.put("/api/edibles/:id", edibles.update);
+  app.patch("/api/edibles/:id", edibles.update);
 
   // Edible destroy
   app.delete("/api/edibles/:id", edibles.destroy);

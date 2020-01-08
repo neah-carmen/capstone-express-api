@@ -1,84 +1,83 @@
-var edibles = {
-  edible1: {
-    id: 1,
-    name: "Top Ramen Soy Flavor",
-    upc: "038678561125",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  },
-  edible2: {
-    id: 2,
-    name: "Sour Patch Kids",
-    upc: "038678561126",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  },
-  edible3: {
-    id: 3,
-    name: "Sour Punch Straws",
-    upc: "038678561127",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  },
-  edible4: {
-    id: 4,
-    name: "Trolli Gummi Worms",
-    upc: "038678561128",
-    user_id: 2,
-    is_vegetarian: "yes",
-    is_vegan: "yes"
-  }
+const db = require("../config/db.config.js");
+const Edible = db.edibles;
+
+// Edible index
+exports.index = (req, res) => {
+  Edible.findAll()
+    .then(edibles => {
+      // Send All Edibles to client
+      res.json(
+        edibles.sort(function(c1, c2) {
+          return c1.id - c2.id;
+        })
+      );
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "error", details: err });
+    });
 };
 
-exports.index = function(req, res) {
-  console.log("--->Index: \n" + JSON.stringify(edibles, null, 4));
-  res.end("All Edibles: \n" + JSON.stringify(edibles, null, 4));
+// Edible create
+exports.create = (req, res) => {
+  // Save to PostgreSQL database
+  Edible.create({
+    name: req.body.name,
+    upc: req.body.upc,
+    user_id: req.body.user_id,
+    is_vegetarian: req.body.is_vegetarian,
+    is_vegan: req.body.is_vegan
+  })
+    .then(edible => {
+      // Send created edible to client
+      res.json(edible);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "error", details: err });
+    });
 };
 
-exports.create = function(req, res) {
-  var newEdible = req.body;
-  edibles["edible" + newEdible.id] = newEdible;
-  console.log("--->After Post, edibles:\n" + JSON.stringify(edibles, null, 4));
-  res.end("Edible created: \n" + JSON.stringify(newEdible, null, 4));
+// Edible show
+exports.show = (req, res) => {
+  Edible.findByPk(req.params.id)
+    .then(edible => {
+      res.json(edible);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "error", details: err });
+    });
 };
 
-exports.show = function(req, res) {
-  var edible = edibles["edible" + req.params.id];
-  console.log("--->Find edible: \n" + JSON.stringify(edible, null, 4));
-  res.end("Find an Edible:\n" + JSON.stringify(edible, null, 4));
+// Update a Edible
+exports.update = (req, res) => {
+  let id = Edible.findByPk(req.params.id);
+  Edible.update(req.body, { where: { id: id } })
+    .then(() => {
+      res
+        .status(200)
+        .json({ mgs: "Updated Successfully -> Edible Id = " + id });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "error", details: err });
+    });
 };
 
-exports.update = function(req, res) {
-  var id = parseInt(req.params.id);
-  var updatedEdible = req.body;
-  if (edibles["edible" + id] != null) {
-    // update data
-    edibles["edible" + id] = updatedEdible;
-
-    console.log(
-      "--->Edible updated successfully, edibles: \n" +
-        JSON.stringify(edibles, null, 4)
-    );
-
-    // return
-    res.end(
-      "Edible updated successfully! \n" + JSON.stringify(updatedEdible, null, 4)
-    );
-  } else {
-    res.end(
-      "Edible doesn't exist:\n:" + JSON.stringify(updatedEdible, null, 4)
-    );
-  }
-};
-
-exports.destroy = function(req, res) {
-  var deleteEdible = edibles["edible" + req.params.id];
-  delete edibles["edible" + req.params.id];
-  console.log(
-    "--->After deletion, edible list:\n" + JSON.stringify(edibles, null, 4)
-  );
-  res.end("Deleted edible: \n" + JSON.stringify(deleteEdible, null, 4));
+// Edible destroy
+exports.destroy = (req, res) => {
+  const id = req.params.id;
+  Edible.destroy({
+    where: { id: id }
+  })
+    .then(() => {
+      res
+        .status(200)
+        .json({ msg: "Deleted Successfully -> Edible Id = " + id });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ msg: "error", details: err });
+    });
 };
