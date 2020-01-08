@@ -1,6 +1,16 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:8080",
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 require("./app/routes/edible.routes.js")(app);
