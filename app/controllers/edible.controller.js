@@ -52,7 +52,7 @@ exports.show = (req, res) => {
 
 // Update a Edible
 exports.update = (req, res) => {
-  let id = Edible.findByPk(req.params.id);
+  const id = req.params.id;
   Edible.update(req.body, { where: { id: id } })
     .then(() => {
       res
