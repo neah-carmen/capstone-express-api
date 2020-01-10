@@ -1,15 +1,17 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+const port = process.env.PORT || 3000;
 
 //Parse requests data
+const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const server = app.listen(8081, function() {
-  const host = server.address().address;
-  const port = server.address().port;
+// Setup a basic get request method
+app.get("", (req, res) =>
+  res.status(200).send({
+    message: "Hello world!"
+  })
+);
 
-  console.log("App listening at http://%s:%s", host, port);
-});
+app.listen(port, () => {});
