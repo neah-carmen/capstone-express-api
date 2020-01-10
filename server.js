@@ -1,8 +1,12 @@
 import config from "dotenv";
 import express from "express";
+import bodyParser from "body-parser";
+import edibleRoutes from "./api/server/routes/EdibleRoutes";
+
+config.config();
+
 const app = express();
 
-import bodyParser from "body-parser";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
