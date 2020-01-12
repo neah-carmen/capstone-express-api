@@ -1,5 +1,6 @@
 import database from "../src/models";
 const FoodLabel = require("../src/models").FoodLabel;
+// const Ingredient = require("../src/models").Ingredient;
 
 class EdibleService {
   static async indexEdible() {
@@ -10,8 +11,16 @@ class EdibleService {
         include: [
           {
             model: FoodLabel,
-            attributes: ["edibleId", "ingredientId"]
+            attributes: [
+              ["edibleId", "this joined edible"],
+              ["ingredientId", "this joined ingredient"]
+            ]
           }
+          // {
+          //   model: Ingredient,
+          //   as: "ingredients",
+          //   attributes: ["name"]
+          // }
         ]
       });
     } catch (error) {
@@ -30,8 +39,15 @@ class EdibleService {
   static async showEdible(id) {
     try {
       const theEdible = await database.Edible.findOne({
+        raw: true,
         where: { id: Number(id) },
-        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"]
+        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
+        include: [
+          {
+            model: FoodLabel,
+            attributes: ["edibleId", "ingredientId"]
+          }
+        ]
       });
 
       return theEdible;
