@@ -3,6 +3,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import edibleRoutes from "./server/routes/EdibleRoutes";
 import ingredientRoutes from "./server/routes/IngredientRoutes";
+import foodLabelRoutes from "./server/routes/FoodLabelRoutes";
 
 config.config();
 
@@ -15,6 +16,7 @@ const port = process.env.PORT || 3000;
 
 app.use("/api/v1/edibles", edibleRoutes);
 app.use("/api/v1/ingredients", ingredientRoutes);
+app.use("/api/v1/foodlabels", foodLabelRoutes);
 
 // when a random route is inputed
 app.get("*", (req, res) =>
