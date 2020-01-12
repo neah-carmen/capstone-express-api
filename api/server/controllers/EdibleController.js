@@ -1,5 +1,5 @@
 import EdibleService from "../services/EdibleService";
-import Util from "../utils/Utils";
+import Util from "../utilities/Utils";
 
 const util = new Util();
 
