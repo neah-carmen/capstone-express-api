@@ -1,17 +1,14 @@
 import database from "../src/models";
-const Ingredient = require("../src/models").Ingredient;
+const FoodLabel = require("../src/models").FoodLabel;
 
 class EdibleService {
   static async indexEdible() {
     try {
       return await database.Edible.findAll({
+        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"]
         // include: [
         //   {
-        //     include: [
-        //       {
-        //         model: Ingredient
-        //       }
-        //     ]
+        //     model: FoodLabel
         //   }
         // ]
       });
@@ -31,7 +28,8 @@ class EdibleService {
   static async showEdible(id) {
     try {
       const theEdible = await database.Edible.findOne({
-        where: { id: Number(id) }
+        where: { id: Number(id) },
+        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"]
       });
 
       return theEdible;
