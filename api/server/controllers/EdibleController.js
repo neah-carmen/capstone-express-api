@@ -20,7 +20,7 @@ class EdibleController {
   }
 
   static async createEdible(req, res) {
-    if (!req.body.title || !req.body.price || !req.body.description) {
+    if (!req.body.name || !req.body.upc || !req.body.userId) {
       util.setError(400, "Please provide complete details");
       return util.send(res);
     }
