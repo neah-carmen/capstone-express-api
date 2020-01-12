@@ -4,7 +4,7 @@
   "description": "Rebase API backend from Rails to Express",
   "main": "server.js",
   "scripts": {
-    "start": "set DEBUG=app, app:* & nodemon server.js",
+    "start": "nodemon --exec babel-node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -46,5 +46,15 @@
       "NODE_ENV": "development",
       "PORT": 8081
     }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/register": "^7.7.7",
+    "@babel/runtime": "^7.7.7",
+    "babel-loader": "^8.0.6"
   }
 }
