@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 3000;
 
 app.use("/api/v1/edibles", edibleRoutes);
 
