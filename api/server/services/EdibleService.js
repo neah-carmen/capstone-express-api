@@ -1,9 +1,20 @@
 import database from "../src/models";
+const Ingredient = require("../src/models").Ingredient;
 
 class EdibleService {
   static async indexEdible() {
     try {
-      return await database.Edible.findAll();
+      return await database.Edible.findAll({
+        // include: [
+        //   {
+        //     include: [
+        //       {
+        //         model: Ingredient
+        //       }
+        //     ]
+        //   }
+        // ]
+      });
     } catch (error) {
       throw error;
     }
