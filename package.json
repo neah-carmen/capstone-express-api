@@ -4,7 +4,7 @@
   "description": "Rebase API backend from Rails to Express",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server.js",
+    "start": "nodemon --exec babel-node api/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
