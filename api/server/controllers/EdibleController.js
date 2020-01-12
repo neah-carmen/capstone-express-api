@@ -47,9 +47,9 @@ class EdibleController {
       const theEdible = await EdibleService.showEdible(id);
 
       if (!theEdible) {
-        util.setError(404, `Cannot find book with the id ${id}`);
+        util.setError(404, `Cannot find edible with the id ${id}`);
       } else {
-        util.setSuccess(200, "Found Book", theEdible);
+        util.setSuccess(200, "Found Edible", theEdible);
       }
       return util.send(res);
     } catch (error) {
@@ -66,7 +66,7 @@ class EdibleController {
       return util.send(res);
     }
     try {
-      const updateEdible = await EdibleService.updateBook(id, alteredBook);
+      const updateEdible = await EdibleService.updateEdible(id, alteredEdible);
       if (!updateEdible) {
         util.setError(404, `Cannot find edible with the id: ${id}`);
       } else {
