@@ -12,10 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Edible.associate = function(models) {
-    Edible.hasMany(models.FoodLabel);
-    Edible.belongsToMany(models.Ingredient, {
-      through: "FoodLabel"
+    Edible.hasMany(models.FoodLabel, {
+      foreignKey: "edibleId",
+      sourceKey: "id"
     });
+    // Edible.belongsToMany(models.Ingredient, {
+    //   through: "FoodLabel"
+    // });
   };
   return Edible;
 };

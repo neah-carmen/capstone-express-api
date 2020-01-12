@@ -5,12 +5,14 @@ class EdibleService {
   static async indexEdible() {
     try {
       return await database.Edible.findAll({
-        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"]
-        // include: [
-        //   {
-        //     model: FoodLabel
-        //   }
-        // ]
+        raw: true,
+        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
+        include: [
+          {
+            model: FoodLabel,
+            attributes: ["edibleId", "ingredientId"]
+          }
+        ]
       });
     } catch (error) {
       throw error;

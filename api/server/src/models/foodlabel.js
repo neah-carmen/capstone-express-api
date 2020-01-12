@@ -10,11 +10,12 @@ module.exports = (sequelize, DataTypes) => {
   );
   FoodLabel.associate = function(models) {
     FoodLabel.belongsTo(models.Edible, {
-      foreignKey: "edibleId"
+      foreignKey: "edibleId",
+      targetKey: "id"
     });
-    FoodLabel.belongsTo(models.Ingredient, {
-      foreignKey: "ingredientId"
-    });
+    // FoodLabel.belongsTo(models.Ingredient, {
+    //   foreignKey: "ingredientId"
+    // });
   };
   return FoodLabel;
 };
