@@ -13,9 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "edibleId",
       targetKey: "id"
     });
-    // FoodLabel.belongsTo(models.Ingredient, {
-    //   foreignKey: "ingredientId"
-    // });
+    FoodLabel.belongsTo(models.Ingredient, {
+      foreignKey: "ingredientId",
+      targetKey: "id"
+    });
   };
   return FoodLabel;
 };

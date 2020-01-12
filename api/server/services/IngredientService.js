@@ -1,9 +1,19 @@
 import database from "../src/models";
+const FoodLabel = require("../src/models").FoodLabel;
 
 class IngredientService {
   static async indexIngredient() {
     try {
-      return await database.Ingredient.findAll();
+      return await database.Ingredient.findAll({
+        raw: true,
+        attributes: ["id", "name", "isVegetarian", "isVegan"],
+        include: [
+          {
+            model: FoodLabel,
+            attributes: ["edibleId", "ingredientId"]
+          }
+        ]
+      });
     } catch (error) {
       throw error;
     }
@@ -20,7 +30,15 @@ class IngredientService {
   static async showIngredient(id) {
     try {
       const theIngredient = await database.Ingredient.findOne({
-        where: { id: Number(id) }
+        raw: true,
+        where: { id: Number(id) },
+        attributes: ["id", "name", "isVegetarian", "isVegan"],
+        include: [
+          {
+            model: FoodLabel,
+            attributes: ["edibleId", "ingredientId"]
+          }
+        ]
       });
 
       return theIngredient;
