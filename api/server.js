@@ -2,6 +2,7 @@ import config from "dotenv";
 import express from "express";
 import bodyParser from "body-parser";
 import edibleRoutes from "./server/routes/EdibleRoutes";
+import ingredientRoutes from "./server/routes/IngredientRoutes";
 
 config.config();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 app.use("/api/v1/edibles", edibleRoutes);
+app.use("/api/v1/ingredients", ingredientRoutes);
 
 // when a random route is inputed
 app.get("*", (req, res) =>
