@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Ingredient.associate = function(models) {
-    Ingredient.hasMany(FoodLabel);
-    Ingredient.hasMany(Edible, { through: "FoodLabel" });
+    Ingredient.hasMany(models.FoodLabel);
+    Ingredient.belongsToMany(models.Edible, { through: "FoodLabel" });
   };
   return Ingredient;
 };
