@@ -1,6 +1,6 @@
 {
   "name": "capstone-express-api",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Rebase API backend from Rails to Express",
   "main": "server.js",
   "scripts": {
@@ -43,8 +43,7 @@
       "node_modules/**/node_modules"
     ],
     "env": {
-      "NODE_ENV": "development",
-      "PORT": 8081
+      "NODE_ENV": "development"
     }
   },
   "devDependencies": {
