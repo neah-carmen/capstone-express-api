@@ -24,7 +24,7 @@ class FoodLabelController {
   }
 
   static async createFoodLabel(req, res) {
-    if (!req.body.name) {
+    if (!req.body.edibleId || !req.body.ingredientId) {
       util.setError(400, "Please provide complete details");
       return util.send(res);
     }
