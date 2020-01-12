@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   );
   Ingredient.associate = function(models) {
     Ingredient.hasMany(models.FoodLabel);
-    Ingredient.belongsToMany(models.Edible, { through: "FoodLabel" });
+    Ingredient.belongsToMany(models.Edible, {
+      through: "FoodLabel"
+    });
   };
   return Ingredient;
 };
