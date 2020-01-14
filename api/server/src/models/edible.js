@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Edible.associate = function(models) {
-    Edible.hasMany(models.FoodLabel, {
-      foreignKey: "edibleId",
-      sourceKey: "id"
-    });
     Edible.belongsToMany(models.Ingredient, {
       through: models.FoodLabel,
       foreignKey: "edibleId",

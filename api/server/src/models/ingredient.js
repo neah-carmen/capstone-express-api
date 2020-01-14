@@ -10,10 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Ingredient.associate = function(models) {
-    Ingredient.hasMany(models.FoodLabel, {
-      foreignKey: "ingredientId",
-      sourceKey: "id"
-    });
     Ingredient.belongsToMany(models.Edible, {
       through: "FoodLabel",
       foreignKey: "ingredientId",
