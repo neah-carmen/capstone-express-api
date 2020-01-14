@@ -1,5 +1,6 @@
 import database from "../src/models";
 const FoodLabel = require("../src/models").FoodLabel;
+const Edible = require("../src/models").Edible;
 
 class IngredientService {
   static async indexIngredient() {
@@ -9,8 +10,8 @@ class IngredientService {
         attributes: ["id", "name", "isVegetarian", "isVegan"],
         include: [
           {
-            model: FoodLabel,
-            attributes: ["edibleId", "ingredientId"]
+            model: Edible,
+            attributes: ["id", "name"]
           }
         ]
       });
@@ -35,8 +36,8 @@ class IngredientService {
         attributes: ["id", "name", "isVegetarian", "isVegan"],
         include: [
           {
-            model: FoodLabel,
-            attributes: ["edibleId", "ingredientId"]
+            model: Edible,
+            attributes: ["id", "name"]
           }
         ]
       });

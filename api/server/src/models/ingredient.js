@@ -14,9 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "ingredientId",
       sourceKey: "id"
     });
-    // Ingredient.belongsToMany(models.Edible, {
-    //   through: "FoodLabel"
-    // });
+    Ingredient.belongsToMany(models.Edible, {
+      through: "FoodLabel",
+      foreignKey: "ingredientId",
+      otherKey: "edibleId"
+    });
   };
   return Ingredient;
 };
