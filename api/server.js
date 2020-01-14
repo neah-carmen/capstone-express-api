@@ -1,6 +1,7 @@
 import config from "dotenv";
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import edibleRoutes from "./server/routes/EdibleRoutes";
 import ingredientRoutes from "./server/routes/IngredientRoutes";
 import foodLabelRoutes from "./server/routes/FoodLabelRoutes";
@@ -8,6 +9,13 @@ import foodLabelRoutes from "./server/routes/FoodLabelRoutes";
 config.config();
 
 const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:8080",
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
