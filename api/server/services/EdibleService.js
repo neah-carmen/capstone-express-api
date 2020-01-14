@@ -1,9 +1,23 @@
 import database from "../src/models";
+const Ingredient = require("../src/models").Ingredient;
 
 class EdibleService {
   static async indexEdible() {
     try {
-      return await database.Edible.findAll();
+      return await database.Edible.findAll({
+        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
+        include: [
+          {
+            model: Ingredient,
+            attributes: ["id", "name"],
+            exclude: [
+              {
+                model: Ingredient.FoodLabel
+              }
+            ]
+          }
+        ]
+      });
     } catch (error) {
       throw error;
     }
@@ -20,7 +34,19 @@ class EdibleService {
   static async showEdible(id) {
     try {
       const theEdible = await database.Edible.findOne({
-        where: { id: Number(id) }
+        where: { id: Number(id) },
+        attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
+        include: [
+          {
+            model: Ingredient,
+            attributes: ["id", "name"],
+            exclude: [
+              {
+                model: Ingredient.FoodLabel
+              }
+            ]
+          }
+        ]
       });
 
       return theEdible;
