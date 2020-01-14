@@ -1,6 +1,6 @@
 import database from "../src/models";
 const FoodLabel = require("../src/models").FoodLabel;
-// const Ingredient = require("../src/models").Ingredient;
+const Ingredient = require("../src/models").Ingredient;
 
 class EdibleService {
   static async indexEdible() {
@@ -10,17 +10,9 @@ class EdibleService {
         attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
         include: [
           {
-            model: FoodLabel,
-            attributes: [
-              ["edibleId", "this joined edible"],
-              ["ingredientId", "this joined ingredient"]
-            ]
+            model: Ingredient,
+            attributes: ["id", "name"]
           }
-          // {
-          //   model: Ingredient,
-          //   as: "ingredients",
-          //   attributes: ["name"]
-          // }
         ]
       });
     } catch (error) {
@@ -44,8 +36,8 @@ class EdibleService {
         attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
         include: [
           {
-            model: FoodLabel,
-            attributes: ["edibleId", "ingredientId"]
+            model: Ingredient,
+            attributes: ["id", "name"]
           }
         ]
       });

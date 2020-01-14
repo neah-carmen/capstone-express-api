@@ -16,9 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "edibleId",
       sourceKey: "id"
     });
-    // Edible.belongsToMany(models.Ingredient, {
-    //   through: "FoodLabel"
-    // });
+    Edible.belongsToMany(models.Ingredient, {
+      through: models.FoodLabel,
+      foreignKey: "edibleId",
+      otherKey: "ingredientId"
+    });
   };
   return Edible;
 };
