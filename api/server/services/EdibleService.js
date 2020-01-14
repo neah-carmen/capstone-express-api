@@ -6,7 +6,6 @@ class EdibleService {
   static async indexEdible() {
     try {
       return await database.Edible.findAll({
-        raw: true,
         attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
         include: [
           {
@@ -31,7 +30,6 @@ class EdibleService {
   static async showEdible(id) {
     try {
       const theEdible = await database.Edible.findOne({
-        raw: true,
         where: { id: Number(id) },
         attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
         include: [

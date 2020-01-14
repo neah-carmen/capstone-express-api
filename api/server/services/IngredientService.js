@@ -6,7 +6,6 @@ class IngredientService {
   static async indexIngredient() {
     try {
       return await database.Ingredient.findAll({
-        raw: true,
         attributes: ["id", "name", "isVegetarian", "isVegan"],
         include: [
           {
@@ -31,7 +30,6 @@ class IngredientService {
   static async showIngredient(id) {
     try {
       const theIngredient = await database.Ingredient.findOne({
-        raw: true,
         where: { id: Number(id) },
         attributes: ["id", "name", "isVegetarian", "isVegan"],
         include: [
