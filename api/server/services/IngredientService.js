@@ -1,5 +1,4 @@
 import database from "../src/models";
-const FoodLabel = require("../src/models").FoodLabel;
 const Edible = require("../src/models").Edible;
 
 class IngredientService {
@@ -10,7 +9,12 @@ class IngredientService {
         include: [
           {
             model: Edible,
-            attributes: ["id", "name"]
+            attributes: ["id", "name"],
+            exclude: [
+              {
+                model: Edible.FoodLabel
+              }
+            ]
           }
         ]
       });
@@ -35,7 +39,12 @@ class IngredientService {
         include: [
           {
             model: Edible,
-            attributes: ["id", "name"]
+            attributes: ["id", "name"],
+            exclude: [
+              {
+                model: Edible.FoodLabel
+              }
+            ]
           }
         ]
       });
