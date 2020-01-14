@@ -8,15 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  FoodLabel.associate = function(models) {
-    FoodLabel.belongsTo(models.Edible, {
-      foreignKey: "edibleId",
-      targetKey: "id"
-    });
-    FoodLabel.belongsTo(models.Ingredient, {
-      foreignKey: "ingredientId",
-      targetKey: "id"
-    });
-  };
+  FoodLabel.associate = function(models) {};
   return FoodLabel;
 };
