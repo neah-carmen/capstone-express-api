@@ -1,6 +1,6 @@
 import database from "../src/models";
 
-class UserService {
+class AuthService {
   static async createUser(newUser) {
     try {
       return await database.User.create(newUser);
@@ -29,4 +29,4 @@ class UserService {
   // }
 }
 
-export default UserService;
+export default AuthService;
