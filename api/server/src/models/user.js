@@ -28,8 +28,8 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       instanceMethods: {
-        validPassword: function(password) {
-          return bcrypt.compareSync(password, this.password);
+        validPassword: async function(password) {
+          return await bcrypt.compareSync(password, this.password);
         }
       }
     }
