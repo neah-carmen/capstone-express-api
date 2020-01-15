@@ -5,7 +5,7 @@ import cors from "cors";
 import edibleRoutes from "./server/routes/EdibleRoutes";
 import ingredientRoutes from "./server/routes/IngredientRoutes";
 import foodLabelRoutes from "./server/routes/FoodLabelRoutes";
-import userRoutes from "./server/routes/UserRoutes";
+import authRoutes from "./server/routes/AuthRoutes";
 
 config.config();
 
@@ -26,7 +26,7 @@ const port = process.env.PORT || 3000;
 app.use("/api/v1/edibles", edibleRoutes);
 app.use("/api/v1/ingredients", ingredientRoutes);
 app.use("/api/v1/foodlabels", foodLabelRoutes);
-app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 // when a random route is inputed
 app.get("*", (req, res) =>
