@@ -20,11 +20,7 @@ export default class Util {
   }
 
   send(res) {
-    const result = {
-      status: this.type,
-      message: this.message,
-      data: this.data
-    };
+    const result = this.data;
 
     if (this.type === "success") {
       return res.status(this.statusCode).json(result);
