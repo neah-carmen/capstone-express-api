@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Edibles', {
+    return queryInterface.createTable("Edibles", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -18,10 +18,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       isVegetarian: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
       },
       isVegan: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Edibles');
+    return queryInterface.dropTable("Edibles");
   }
 };
