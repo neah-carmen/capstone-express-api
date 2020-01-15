@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   LabelImage.associate = function(models) {
-    // associations can be defined here
+    LabelImage.hasMany(models.Edible);
   };
   return LabelImage;
 };
