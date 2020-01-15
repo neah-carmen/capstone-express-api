@@ -1,9 +1,7 @@
 "use strict";
 const bcrypt = require("bcryptjs");
 
-const salt = bcrypt.genSaltSync();
-var password = "pasword";
-password = bcrypt.hashSync(password, salt);
+let password = bcrypt.hashSync("password", bcrypt.genSaltSync());
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
