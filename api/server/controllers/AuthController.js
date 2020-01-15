@@ -35,27 +35,22 @@ class AuthController {
     })
       .then(user => {
         if (!user) {
-          return res.status(404).send({ reason: "User Not Found." });
+          return res.status(400).json({ msg: "User not exist" });
         }
 
-        let passwordIsValid = bcrypt.compareSync(
-          req.body.password,
-          user.password
-        );
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+          if (err) {
+            throw err;
+          }
 
-        console.log(req.body.password);
-        console.log(user.password);
-
-        if (!passwordIsValid) {
-          return res.status(401).send({
-            auth: false,
-            accessToken: null,
-            reason: "Invalid Password!"
-          });
-        }
-
-        var token = jwt.sign({ id: user.id }, secret, {
-          expiresIn: 86400 // expires in 24 hours
+          if (result) {
+            let token = jwt.sign({ id: user.id }, secret, {
+              expiresIn: 86400 // expires in 24 hours
+            });
+            return res.status(200).json({ msg: "Login success", token });
+          } else {
+            return res.status(401).json({ msg: "Invalid credentials" });
+          }
         });
       })
       .catch(err => {
