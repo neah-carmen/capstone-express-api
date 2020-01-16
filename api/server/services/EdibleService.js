@@ -1,5 +1,6 @@
 import database from "../src/models";
 const Ingredient = require("../src/models").Ingredient;
+const LabelImage = require("../src/models").LabelImage;
 
 class EdibleService {
   static async indexEdible() {
@@ -7,6 +8,10 @@ class EdibleService {
       return await database.Edible.findAll({
         attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
         include: [
+          {
+            model: LabelImage,
+            attributes: ["id", "url"]
+          },
           {
             model: Ingredient,
             attributes: ["id", "name"],
@@ -37,6 +42,10 @@ class EdibleService {
         where: { id: Number(id) },
         attributes: ["id", "name", "upc", "isVegetarian", "isVegan"],
         include: [
+          {
+            model: LabelImage,
+            attributes: ["id", "url"]
+          },
           {
             model: Ingredient,
             attributes: ["id", "name"],
