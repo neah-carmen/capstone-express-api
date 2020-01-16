@@ -3,6 +3,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import edibleRoutes from "./server/routes/EdibleRoutes";
+import labelImageRoutes from "./server/routes/LabelImageRoutes";
 import ingredientRoutes from "./server/routes/IngredientRoutes";
 import foodLabelRoutes from "./server/routes/FoodLabelRoutes";
 import authRoutes from "./server/routes/AuthRoutes";
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 app.use("/api/v1/edibles", edibleRoutes);
+app.use("/api/v1/labelimages", labelImageRoutes);
 app.use("/api/v1/ingredients", ingredientRoutes);
 app.use("/api/v1/foodlabels", foodLabelRoutes);
 app.use("/api/v1/auth", authRoutes);
