@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   LabelImage.associate = function(models) {
-    LabelImage.hasMany(models.Edible);
+    LabelImage.belongsTo(models.Edible, { foreignKey: "edibleId" });
   };
   return LabelImage;
 };

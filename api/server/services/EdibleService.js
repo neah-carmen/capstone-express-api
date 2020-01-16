@@ -10,7 +10,7 @@ class EdibleService {
         include: [
           {
             model: LabelImage,
-            attributes: ["id", "url"]
+            attributes: ["id", "url", "edibleId"]
           },
           {
             model: Ingredient,
@@ -44,7 +44,7 @@ class EdibleService {
         include: [
           {
             model: LabelImage,
-            attributes: ["id", "url"]
+            attributes: ["id", "url", "edibleId"]
           },
           {
             model: Ingredient,
